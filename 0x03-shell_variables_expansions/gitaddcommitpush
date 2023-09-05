@@ -1,0 +1,25 @@
+#!/bin/bash
+#is file name provided
+if [$# -eq 1]; then
+file_name="$1"
+
+#check if file name exists
+if [-e "$file_name"]; then
+# Make file executable for only owner
+chmod u+x "$file_name"
+
+#Add newly executable file to GIT
+git add "$file_name"
+
+#Use file name as commit message
+git commit -m "$filename"
+
+#push changes to remote REPOSITORY
+git push
+
+#send user message confirming successful commit and push of file
+echo "changes successfully commited and pushed, you can now use the checker"
+exit 0
+else
+echo "Error_404:File\"$file_name" not found"
+fi
