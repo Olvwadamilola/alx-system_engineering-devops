@@ -15,7 +15,7 @@ if [ -f "$file_name" ]; then
 	chmod +x  "$file_name"
 
 	#Add newly executable file to GIT
-	git add .
+	git add "$file_name"
 
 	#Use file name as commit message
 	git commit -m  "$file_name"
