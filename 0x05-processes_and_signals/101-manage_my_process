@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Bash script that manages manage_my_process
+
+# Check the argument and execute the corresponding action
+case "$1" in
+    start|stop|restart)
+        sudo ./manage_my_process "$1"
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
+esac
+
+exit 0
