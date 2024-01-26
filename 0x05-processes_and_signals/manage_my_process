@@ -1,9 +1,50 @@
 #!/usr/bin/env bash
-# Indefinitely writes "I am alive" to the file /tmp/my_process.
-# with a sleep 2 in between each message.
 
-while true
-do
-  echo "I am alive!" >> /tmp/my_process
-  sleep 2
-done
+# File to write the "I am alive!" messages
+output_file="/tmp/my_process"
+
+# Function to start the process
+start_process() {
+    echo "manage_my_process started"
+    while true
+    do
+        echo "I am alive!" >> "$output_file"
+        sleep 2
+    done
+}
+
+# Function to stop the process
+stop_process() {
+    echo "manage_my_process stopped"
+    rm -f "$output_file"
+}
+
+# Check the argument and execute the corresponding action
+case "$1" in
+    start)
+        start_process &
+        echo "$!" > /var/run/my_process.pid
+        ;;
+    stop)
+        pid=$(cat /var/run/my_process.pid 2>/dev/null)
+        if [ -n "$pid" ]; then
+            kill "$pid" 2>/dev/null
+        fi
+        stop_process
+        ;;
+    restart)
+        pid=$(cat /var/run/my_process.pid 2>/dev/null)
+        if [ -n "$pid" ]; then
+            kill "$pid" 2>/dev/null
+        fi
+        stop_process
+        start_process &
+        echo "$!" > /var/run/my_process.pid
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
+esac
+
+exit 0
