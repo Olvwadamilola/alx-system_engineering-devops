@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-
+#regular expression that will match hbtn
 if ARGV.empty?
     puts "Please provide an argument."
   else
