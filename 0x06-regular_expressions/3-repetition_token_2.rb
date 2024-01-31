@@ -6,7 +6,7 @@ if ARGV.empty?
     input_string = ARGV[0]
   
     # Regular expression matching
-    match = input_string.scan(/hb{1,5}tn/).flatten
+    match = input_string.scan(/hbt{1,5}n/).flatten
   
     # Output the result
     if match.any?
