@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-#regular expression that will match hbtn
+# 1-repetition_token_0.rb
 if ARGV.empty?
     puts "Please provide an argument."
   else

@@ -6,7 +6,7 @@ if ARGV.empty?
     input_string = ARGV[0]
   
     # Regular expression matching
-    match = input_string.scan(/hb?tn/).flatten
+    match = input_string.scan(/hb{1,5}tn/).flatten
   
     # Output the result
     if match.any?
@@ -15,4 +15,3 @@ if ARGV.empty?
       puts ""
     end
   end
-  
